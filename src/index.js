@@ -38,7 +38,7 @@ function renderContent(newContent, oldContent = {}) {
     contentDOM.style.color = newContent.color
 }
 
-function stateChanger(state, action) {
+function reducer(state, action) {
     if (!state) {
         return {
             title: {
@@ -89,7 +89,7 @@ function createStore(reducer) {
     return {getState, dispatch, subscribe}
 }
 
-const store = createStore(appState, stateChanger)
+const store = createStore(reducer)
 let oldState = store.getState()
 store.subscribe(() => {
     const newState = store.getState()// 数据可能变化，获取新的 state
